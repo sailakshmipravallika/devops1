@@ -1,1 +1,24 @@
+s1 ansible_host=13.208.45.222
+s2 ansible_host=13.208.45.222
+s3 ansible_host= 13.208.45.222 ansible_user=ubuntu 
+s4 ansible_host= 13.208.45.222 ansible_user=ubuntu 
+s5 ansible_host= 13.208.45.222 ansible_user=ubuntu 
+[loadbalancers]
+s4
 
+[databases]
+s5
+
+[webservers]
+s1
+s2
+s3
+
+[allservers:allchildren]
+loadbalancers
+databases
+webservers
+
+[allservers:vars]
+ansible_user=ec2_user
+ansible_ssh_private_key_file=/tmp/puvvuda.pem
